@@ -1,4 +1,4 @@
-package eda.pkg2025.i.LinkedList;
+package eda.pkg2025.LinkedList;
 
 public class Node {
 
