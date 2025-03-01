@@ -1,10 +1,9 @@
 package Taller1List.Cedula;
 
-
-
 import AlgoritmosDeBsqueda.BusquedaBinariaList;
 import SortingAlgorithms.InsertionSortList;
 import edaGenericidad.linkedListG.*;
+//el primer metodo a llamar debe ser el de ordenar
 
 public class Cedulas {
       private LinkedList<Integer> cedulas;
@@ -28,9 +27,9 @@ public class Cedulas {
       public int numerosMayores(){
         int mayores = 0;
         for(int i = 0; i < cedulas.getSize(); i++){
-           if(cedulas.get(i) > 19145954 ){
-             mayores++;
-           }
+           if(cedulas.get(i) > 19145954 ){  //si se garantiza que la cedula 19145954  podriamos restarle a 100 la poscion de donde
+             mayores++;                    //se encuentra +1, pero puede que el elemento no esté, solo dice mayores a él
+           } 
          }
         
         return mayores;
