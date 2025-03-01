@@ -1,10 +1,10 @@
 package eda.pkg2025.LinkedList;
 
-//verificar qwue al agregar y eliminar se haga la modificacion a size
 
-//when we add by index or delete by index, we think that the index is int the range 
 
-//asi como est;a, el primer metodo que denbe llamar para agregar al principio es beginning, arrreglar en
+//when we add by index or delete by index, we think that the index is in the range 
+
+
 public class LinkedList {
 
    private Node head;
