@@ -6,9 +6,9 @@ public class Tester {
         LinkedList<Integer> list = new LinkedList<Integer>();
 
         // Test addBegining
-        list.addBeginning(10);
-        list.addBeginning(20);
-        list.addBeginning(30);
+        list.addLast(10);
+        list.addLast(20);
+        list.addLast(30);
         System.out.println("List after addBegining(30), addBegining(20), addBegining(10):");
         list.printList(); // Expected: 30 20 10
         System.out.println("Size: " + list.getSize()); // Expected: 3

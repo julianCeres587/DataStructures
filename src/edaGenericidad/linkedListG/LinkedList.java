@@ -150,6 +150,16 @@ public class LinkedList<E> {
          }
          return currentNode.getValue();
         }
+
+        public Node<E> getNode(int index){
+            Node<E> currentNode = this.head;
+            int i = 0;
+            while(currentNode != null && i != index){
+               currentNode = currentNode.getNext();  
+                 i++;
+            }
+            return currentNode;
+           }
         
          public int indexOf(E value){
              boolean exists = false;
