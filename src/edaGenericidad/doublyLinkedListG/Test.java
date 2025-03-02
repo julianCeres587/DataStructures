@@ -48,6 +48,7 @@ public class Test {
                     scanner.nextLine();
                     System.out.print("Ingrese el valor: ");
                     String value3 = scanner.nextLine();
+
                     list.addByindex(index3, value3);
                     list.printList();
                     System.out.println("Size: " + list.getSize());

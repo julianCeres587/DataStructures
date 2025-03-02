@@ -36,7 +36,7 @@ public class DoublyLinkedList {
           this.addBeginning(value);
           return;
         }
-        if(index == this.size-1){
+        if(index == this.size){
           this.addLast(value);
           return;
         }
