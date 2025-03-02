@@ -31,7 +31,7 @@ public class LinkedList<E> {
            this.addBeginning(value);
            return;
          }
-         if(index == this.size-1){
+         if(index == this.size){  //acá habia size -1, pero hacia falla
            this.addLast(value);
            return;
          }

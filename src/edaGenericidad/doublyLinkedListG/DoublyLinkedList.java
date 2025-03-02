@@ -32,7 +32,7 @@ public class DoublyLinkedList<E> {
           this.addBeginning(value);
           return;
         }
-        if(index == this.size-1){
+        if(index == this.size){ //acá tenía this.size -1
           this.addLast(value);
           return;
         }
