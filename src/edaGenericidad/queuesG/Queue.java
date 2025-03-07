@@ -16,7 +16,7 @@ public class Queue<E> {
         this.head = head;
      }
 
-     public void encolar(E value){
+     public void enqueue(E value){
         Node<E> newNode = new Node<E>( value);
         if(this.size == 0){
             this.head = newNode;
@@ -30,7 +30,7 @@ public class Queue<E> {
          this.size++;
         }
 
-        public E desencolar(){
+        public E dequeue(){
             if(this.size >= 1){
                 E value = this.head.getValue();
                 this.head = this.head.getNext();
