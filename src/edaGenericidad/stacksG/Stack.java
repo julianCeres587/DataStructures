@@ -13,14 +13,14 @@ public class Stack <E> {
          this.top = top;
       }
 
-      public void apilar(E value){
+      public void push(E value){
         Node<E> newNode = new Node<E>(value, this.top);
         this.top = newNode;
          
         this.size++;
         }
 
-        public E desapilar(){
+        public E pop(){
             if(this.top != null){
                 E value = this.top.getValue();
                 this.top = this.top.getNext();

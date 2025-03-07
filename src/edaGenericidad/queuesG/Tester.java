@@ -25,16 +25,16 @@ import java.util.Scanner;
                 case 1:
                     System.out.print("Ingrese el valor: ");
                     String value1 = scanner.nextLine();
-                    queue.encolar(value1);
+                    queue.enqueue(value1);
                     queue.printQueue();
                     System.out.println("Size: " + queue.getSize());
                     break;
                 case 2:
                    
                     
-                    String s = queue.desencolar();
+                    String s = queue.dequeue();
                     queue.printQueue();
-                    System.out.println("Size: " + queue.getSize() + "Eliminado: " + s);
+                    System.out.println("Size: " + queue.getSize() + " Eliminado: " + s);
                     break;
                 
 

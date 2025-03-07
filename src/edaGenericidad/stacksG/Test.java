@@ -23,14 +23,14 @@ public class Test {
                 case 1:
                     System.out.print("Ingrese el valor: ");
                     String value1 = scanner.nextLine();
-                    stack.apilar(value1);
+                    stack.push(value1);
                     stack.printStack();
                     System.out.println("Size: " + stack.getSize());
                     break;
                 case 2:
                    
                     
-                    String s = stack.desapilar();
+                    String s = stack.pop();
                     stack.printStack();
                     System.out.println("Size: " + stack.getSize() + "Eliminado: " + s);
                     break;
