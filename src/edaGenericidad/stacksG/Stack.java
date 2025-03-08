@@ -5,12 +5,17 @@ public class Stack <E> {
      private int size = 0;
       private Node <E> top;
 
-      Stack(){
-
+     public Stack(){
+            
       }
 
-      Stack(Node <E> top){
+      public Stack(Node <E> top){
          this.top = top;
+      }
+
+      public void clear(){
+        this.top = null;
+        this.size = 0;
       }
 
       public void push(E value){
@@ -26,14 +31,17 @@ public class Stack <E> {
                 this.top = this.top.getNext();
                 this.size--;
                 return value;
-                
-            }
-            return null;
+              }
+              return null;
              
          }
 
        public Node <E> getTop(){
         return this.top;
+      }
+
+      public boolean isEmpty(){
+        return this.size == 0;
       }
 
       public void setTop(Node <E> top){
