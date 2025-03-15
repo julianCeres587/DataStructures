@@ -62,5 +62,17 @@ public class Stack <E> {
 
       }
 
+      public void recursiveUnstack(Stack<E> stack){
+             if(this.isEmpty()){
+                  System.out.println();
+             }
+             else{
+              System.out.println(stack.pop());
+              recursiveUnstack(stack);
+             }
+
+
+      }
+
     
 }
