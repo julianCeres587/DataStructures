@@ -1,6 +1,6 @@
 package EjerciciosEE.NotasDefinitivas;
 
-public class Nota {
+public class Nota implements Comparable<Nota> {
 
     private int valor;
     private String nombre;
@@ -20,6 +20,11 @@ public class Nota {
 
     public String getNombre(){
         return this.nombre;
+    }
+
+    @Override
+    public int compareTo(Nota otra) {
+        return this.valor - otra.getValor();
     }
 
     

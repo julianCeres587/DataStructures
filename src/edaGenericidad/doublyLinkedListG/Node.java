@@ -6,7 +6,7 @@ public class Node<E> {
     private Node<E> next;
     private Node<E> previous;
 
-    Node(){
+    public Node(){
 
     }
 
