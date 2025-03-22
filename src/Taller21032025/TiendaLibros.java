@@ -6,8 +6,8 @@ import java.util.List;
 public class TiendaLibros {
 
     
-    private  List <Libro> catalogo = new LinkedList<Libro>();
-    private  CarroCompras carro = new CarroCompras();
+    private final List <Libro> catalogo = new LinkedList<>();
+    private final CarroCompras carro = new CarroCompras();
 
 
     public void agregarLibro(Libro libro){
@@ -37,22 +37,23 @@ public class TiendaLibros {
         return rta;
         
     }
-
-    public boolean existeLibro(Libro libro){
-        if(catalogo.contains(libro)){
-            return true;
-        }
-        return false;
+    
+    public boolean existeLibro(Libro libro) {
+        return catalogo.contains(libro);
     }
+    
 
     public List<Libro> getCatalogo(){
         return this.catalogo;
     }
 
+    public int getPrecioTotal(){
+        return carro.getPrecioTotal();
+    }
+
     public CarroCompras getCarro(){
         return this.carro;
     }
-
 
     
 }

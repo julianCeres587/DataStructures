@@ -1,15 +1,12 @@
 package Taller21032025;
 
-import java.util.Comparator;
 import java.util.Objects;
 
-//import java.util.Objects;
+public class Libro {
 
-public class Libro implements Comparator {
-
-    String titulo;
-    String isbn;
-    int precio;
+    private String titulo;
+    private String isbn;
+    private int precio;
 
     public Libro() {
 
@@ -21,25 +18,19 @@ public class Libro implements Comparator {
         this.precio = precio;
     }
 
-
-    
     @Override
-    public boolean equals(Object libro){
-         boolean rta = false;
-         if(libro instanceof Libro){
-            Libro lib = (Libro)libro;
-            if(this.isbn == lib.getIsbn()){
-                rta = true;
-            }
-         }
-         return rta;
-         
+    public boolean equals(Object libro) {
+        if (libro instanceof Libro lib) {
+            return this.isbn.equals(lib.getIsbn());
+        }
+        return false;
     }
-
+    
      @Override
     public int hashCode() {
-        return Objects.hash(isbn);
+        return Objects.hash(isbn);  //obtener codigo hash de la propiedad que se va a comparar
     }
+    
 
     public String getTitulo() {
         return this.titulo;
@@ -65,12 +56,5 @@ public class Libro implements Comparator {
         this.precio = precio;
     }
  
-   
-
-    @Override
-    public int compare(Object o1, Object o2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'compare'");
-    }
 
 }
