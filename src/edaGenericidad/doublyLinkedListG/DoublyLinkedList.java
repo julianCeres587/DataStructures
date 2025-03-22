@@ -1,5 +1,7 @@
 package edaGenericidad.doublyLinkedListG;
 
+//los objetos que se vayan a comparar deben tener un equals
+
 public class DoublyLinkedList<E> {
 
     private Node<E> head;
@@ -190,6 +192,16 @@ public class DoublyLinkedList<E> {
         }
         
        }
+
+       public Node<E> getNode(int index){
+        Node<E> currentNode = this.head;
+        int i = 0;
+        while(currentNode != null && i != index){
+           currentNode = currentNode.getNext();  
+             i++;
+        }
+        return currentNode;
+       }
             //it uses both sides
         public int indexOf(E value){
             boolean exists = false;
@@ -252,6 +264,10 @@ public class DoublyLinkedList<E> {
          public E nodeGetFirstValue(){
             return this.head.getValue();
          }
+
+         public Node<E> getLastNode(){
+            return this.tail;
+            }
 
          public E nodeGetLastValue(){
             return this.tail.getValue();
