@@ -12,7 +12,7 @@ import edaGenericidad.doublyLinkedListG.*;
 // si a  > b retorna   > 0
 public class InsertionSortGenericList {
 
-    public static <T extends Comparable<T>> DoublyLinkedList<T> insertionSortNota(DoublyLinkedList<T> list) {
+    public static <T extends Comparable<T>> DoublyLinkedList<T> insertionSortGenericList(DoublyLinkedList<T> list) {
         for (int i = 0; i < list.getSize() - 1; i++) {
 
             //si  la primera vez, el numero de la derecha es menor que el inicial
@@ -64,7 +64,7 @@ public class InsertionSortGenericList {
 
         System.out.println("Antes de ordenar (Enteros): ");
         intList.printList();
-        InsertionSortGenericList.insertionSortNota(intList);
+        InsertionSortGenericList.insertionSortGenericList(intList);
         System.out.println("Después de ordenar (Enteros): ");
         intList.printList();
 
@@ -78,7 +78,7 @@ public class InsertionSortGenericList {
 
         System.out.println("\nAntes de ordenar (Strings): ");
         stringList.printList();
-        InsertionSortGenericList.insertionSortNota(stringList);
+        InsertionSortGenericList.insertionSortGenericList(stringList);
         System.out.println("Después de ordenar (Strings): ");
         stringList.printList();
 
@@ -166,7 +166,7 @@ public class InsertionSortGenericList {
          }   
          
          
-         list = insertionSortNota(list);
+         list = insertionSortGenericList(list);
 
          
          System.out.println("Lista Ordenada");
