@@ -42,12 +42,14 @@ public class TestTiendaLibros {
 
         System.out.println("Catálogo:");
         tienda.getCatalogo().printList();
+        System.out.println("Size: " + tienda.getCatalogo().getSize());
        
 
         System.out.println("\n Contenido del carrito antes de retirar:");
         tienda.getCarro().getItems().printList();
         
         System.out.println("Valor total en el carrito: " + tienda.getPrecioTotal());
+        System.out.println("Size: " + tienda.getCarro().getItems().getSize());
 
         // Retirar 'El Principito' del carrito
         Libro libroRetirado = new Libro("prueba", "978-3-16-148410-0", 0);
@@ -57,6 +59,7 @@ public class TestTiendaLibros {
         // Mostrar contenido del carrito después de retirar
         System.out.println("\nContenido del carrito después de retirar:");
         tienda.getCarro().getItems().printList();
+        System.out.println("Size: " + tienda.getCarro().getItems().getSize());
         
         System.out.println("Valor total en el carrito: " + tienda.getPrecioTotal());
     }

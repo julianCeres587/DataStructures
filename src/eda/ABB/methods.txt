@@ -1,0 +1,57 @@
+Métodos de inserción y estructura:
+void agregar(int elemento)
+Node getRaiz()
+void setRaiz(Node raiz)
+
+
+
+Recorridos:
+void inOrden(Node nodo) — Inorden (Izquierda, Raíz, Derecha)
+void preOrden(Node nodo) — Preorden (Raíz, Izquierda, Derecha)
+void postOrden(Node nodo) — Postorden (Izquierda, Derecha, Raíz)
+void recorridoNiveles(Node nodo) — Por niveles (BFS)
+
+
+
+Recorridos con estructuras:
+Stack<Integer> inOrderStack(Node nodo, Stack<Integer> pila)
+LinkedList<Integer> inOrderList(Node nodo, LinkedList<Integer> list)
+
+
+
+Búsqueda:
+boolean contains(int target, Node node)
+Node getParent(int target, Node node, Node padre)
+Node getNodeWhereIs(int target, Node node)
+
+
+
+Eliminación de nodos:
+void TargetHasNoSons(Node parent, Node target, boolean left, boolean right)
+void TargetOneSon(Node parent, Node target)
+void removeRoot()
+void removeNodeTwoChildren(int value, Node root, Node target)
+void remove(int value)
+
+
+
+Sucesor y mínimo:
+Node getMin(Node node)
+Node getSucesor(int valor, Node node)
+
+
+
+Consultas:
+void printRange(int min, int max, Node nodo) — Imprimir nodos en un rango
+void getPrevNext(int value) — Obtener predecesor y sucesor en recorrido inorden
+int calcularMaximoPar(Node nodo) — Máximo valor par
+boolean sameStructure(Node nodo1, Node nodo2) — Comparar estructura de dos árboles
+int getNivel(valor,raizArbol) - retornar nivel de un nodo
+
+
+Métricas del árbol:
+int calcularHojas(Node nodo) — Número de hojas
+int calcularSuma(Node node) — Suma de todos los nodos
+int calcularPeso(Node nodo) — Número total de nodos (peso)
+int calcularAltura(Node nodo) — Altura del árbol
+

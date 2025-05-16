@@ -3,7 +3,7 @@ package edaGenericidad.doublyLinkedListG;
 //los objetos que se vayan a comparar deben tener un equals
 public class DoublyLinkedList<E> {
 
-    private Node<E> head;
+    private  Node<E> head;
     private Node<E> tail;
     private int size = 0;
 
@@ -11,8 +11,31 @@ public class DoublyLinkedList<E> {
 
     }
 
+    public void increaseSize(){
+        this.size++;
+    }
+
+    public void decreaseSize(){
+        this.size--;
+    }
+
     public void addBeginning(E value) {
         Node<E> newNode = new Node<E>(value);
+        if (this.size == 0) {
+            this.head = newNode;
+            this.tail = this.head;
+
+        } else {
+            newNode.setNext(this.head);
+            this.head.setPrevious(newNode);
+            this.head = newNode;
+        }
+        this.size++;
+
+    }
+
+    public void addBeginningNode(Node<E> newNode) {
+       
         if (this.size == 0) {
             this.head = newNode;
             this.tail = this.head;
@@ -86,6 +109,39 @@ public class DoublyLinkedList<E> {
         return exists;
     }
 
+
+
+    public Node<E> containsNode(E value) {
+        boolean exists = false;
+        boolean rightNode = false;
+        boolean leftNode = false;
+        Node<E> currentNodeB = this.head;
+        Node<E> currentNodeL = this.tail;
+        while (currentNodeB != null && exists == false && currentNodeL != null) {
+            if (currentNodeB.getValue().equals(value) || currentNodeL.getValue().equals(value)) {
+                exists = true;
+                if(currentNodeB.getValue().equals(value)){
+                    leftNode = true;
+                    break;
+                }
+                if(currentNodeL.getValue().equals(value)){
+                    rightNode = true;
+                    break;
+                }
+            }   //goes through the list by both sides
+            currentNodeB = currentNodeB.getNext();
+            currentNodeL = currentNodeL.getPrevious();
+        }
+        if(exists == true){
+            if(leftNode){
+                return currentNodeB;
+            }
+            return currentNodeL;
+        }
+        return null;
+        
+    }
+
     public DoublyLinkedList<E> copyOf() {
         Node<E> currentNode = this.head;
         DoublyLinkedList<E> copy = new DoublyLinkedList<>();
@@ -97,7 +153,7 @@ public class DoublyLinkedList<E> {
 
     }
 
-    public void delete(E value) {
+    public void delete(E value) {  //elimina el elemento pero si aparece una vez, si hay repetidos, toca hacer que el ciclo no se salga y tener un contador de ocurrencias 
         boolean finish = false;
         boolean found = false;
         Node<E> currentNodeB = this.head;
@@ -194,7 +250,7 @@ public class DoublyLinkedList<E> {
             this.size--;
         } else {
             this.head = this.head.getNext();
-            this.head.getPrevious().setNext(null);;
+            this.head.getPrevious().setNext(null);
             this.head.setPrevious(null);
             this.size--;
         }
@@ -212,6 +268,21 @@ public class DoublyLinkedList<E> {
             this.tail.setNext(null);
             this.size--;
         }
+    }
+
+    public boolean equals(DoublyLinkedList<E> list){
+              Node<E> currentNodeO = this.head;
+              Node<E> currentNodeA = list.getFirstNode();
+              boolean keepGoing = true;
+              while(currentNodeO != null && currentNodeA!= null && keepGoing==true){
+                   if(!currentNodeO.getValue().equals(currentNodeA.getValue())){
+                        keepGoing = false;
+                   }
+                   currentNodeO = currentNodeO.getNext();
+                   currentNodeA = currentNodeA.getNext();
+               }
+              return keepGoing;
+
     }
 
     //returns the element at the intex
