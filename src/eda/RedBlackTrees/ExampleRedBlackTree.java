@@ -21,7 +21,7 @@ public class ExampleRedBlackTree {
          nombres2.put("Juan Lopez","Colombia");   //Ahora ordena por apellidos, la comparacion se hace solo con  las keys
          nombres2.put("María Perez","Argentina");
          nombres2.put("Ana contreras","Ecuador");
-         nombres2.put("Luis Perez","Brasil");
+         nombres2.put("Luis Perez","Brasil");     //el tree map no admite repetidos
          printTree(nombres2);
     }
 

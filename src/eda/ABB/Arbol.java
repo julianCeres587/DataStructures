@@ -12,37 +12,37 @@ public class Arbol {
         if (raiz == null) {
             raiz = new Node(elemento);
         } else {
-            raiz.agregar(elemento);   //metodo agregar de node
+            raiz.agregar(elemento); // metodo agregar de node
         }
     }
 
-    public void inOrden(Node nodo) {    //IRD
+    public void inOrden(Node nodo) { // IRD
         if (nodo == null) {
         } else {
-            inOrden(nodo.getIzquierdo());//I
-            System.out.println("Dato - > " + nodo.getDato());//R
-            inOrden(nodo.getDerecho());//D
-        }
-
-    }
-
-    public void postOrden(Node nodo) {//IDR
-        if (nodo == null) {
-        } else {
-            postOrden(nodo.getIzquierdo());//I
-            postOrden(nodo.getDerecho());//D
-            System.out.println("Dato - > " + nodo.getDato());//R
-
+            inOrden(nodo.getIzquierdo());// I
+            System.out.println("Dato - > " + nodo.getDato());// R
+            inOrden(nodo.getDerecho());// D
         }
 
     }
 
-    public void preOrden(Node nodo) {//RID
+    public void postOrden(Node nodo) {// IDR
         if (nodo == null) {
         } else {
-            System.out.println("Dato - > " + nodo.getDato());//R
-            preOrden(nodo.getIzquierdo());//I
-            preOrden(nodo.getDerecho());//D
+            postOrden(nodo.getIzquierdo());// I
+            postOrden(nodo.getDerecho());// D
+            System.out.println("Dato - > " + nodo.getDato());// R
+
+        }
+
+    }
+
+    public void preOrden(Node nodo) {// RID
+        if (nodo == null) {
+        } else {
+            System.out.println("Dato - > " + nodo.getDato());// R
+            preOrden(nodo.getIzquierdo());// I
+            preOrden(nodo.getDerecho());// D
         }
 
     }
@@ -73,9 +73,9 @@ public class Arbol {
         if (nodo == null) {
             return pila;
         } else {
-            inOrderStack(nodo.getIzquierdo(), pila);//I
-            pila.push(nodo.getDato());//R
-            inOrderStack(nodo.getDerecho(), pila);//D
+            inOrderStack(nodo.getIzquierdo(), pila);// I
+            pila.push(nodo.getDato());// R
+            inOrderStack(nodo.getDerecho(), pila);// D
         }
         return pila;
 
@@ -86,13 +86,33 @@ public class Arbol {
         if (nodo == null) {
             return list;
         } else {
-            inOrderList(nodo.getDerecho(), list);//I
-            list.push(nodo.getDato());//R
-            inOrderList(nodo.getIzquierdo(), list);//D
+            inOrderList(nodo.getDerecho(), list);// I
+            list.push(nodo.getDato());// R
+            inOrderList(nodo.getIzquierdo(), list);// D
         }
         return list;
 
     }
+
+    public int sumatoriaNodo(int target, Node node){   //retorna la sumatoria del camino hacia ese nodo
+          if (node == null) {
+            return -1;
+        }
+        if (node.getDato() == target) {
+            return node.getDato();
+        }
+        if (node.getDato() > target) {
+            return node.getDato() + sumatoriaNodo(target, node.getIzquierdo());
+        } else {
+            return node.getDato() + sumatoriaNodo(target, node.getDerecho());
+        }
+
+
+
+    }
+
+
+
 
     public boolean contains(int target, Node node) {
         if (node == null) {
@@ -108,7 +128,7 @@ public class Arbol {
         }
     }
 
-    public Node getParent(int target, Node node, Node padre) {//inicialmente  nulo, pasa la raiz
+    public Node getParent(int target, Node node, Node padre) {// inicialmente nulo, pasa la raiz
         if (node == null) {
             return null;
         }
@@ -187,14 +207,16 @@ public class Arbol {
                     estaEnIzquierda = true;
                 }
                 TargetHasNoSons(parentSucesorNode, sucesorNode, estaEnIzquierda, estaEnDerecha);
-            } else {   //si no es hoja, caer;a en el caso de que tiene un solo hijo
+            } else { // si no es hoja, caer;a en el caso de que tiene un solo hijo
                 TargetOneSon(parentSucesorNode, sucesorNode);
             }
         }
 
     }
-    //realiza comparacion en nodo raiz con los dos hijos que le llegan, de ahí, compara con el que sea el par mayor
-    //ese retorno siempre traerá al maximo par, ya que, de no ser par, retorna el maximo del subarbol
+    // realiza comparacion en nodo raiz con los dos hijos que le llegan, de ahí,
+    // compara con el que sea el par mayor
+    // ese retorno siempre traerá al maximo par, ya que, de no ser par, retorna el
+    // maximo del subarbol
 
     public int getMaxPar(Node node) {
         if (node == null) {
@@ -226,7 +248,7 @@ public class Arbol {
                 estaEnIzquierda = true;
             }
             TargetHasNoSons(parentSucesor, sucesor, estaEnIzquierda, estaEnDerecha);
-        } else {   //si no es hoja, caer;a en el caso de que tiene un solo hijo
+        } else { // si no es hoja, caer;a en el caso de que tiene un solo hijo
             TargetOneSon(parentSucesor, sucesor);
         }
     }
@@ -234,7 +256,7 @@ public class Arbol {
     public void remove(int value) {
 
         if (value == this.raiz.getDato()) {
-            removeRoot();  //valida los tres casos pero con la raiz, ya que no tendrá padre
+            removeRoot(); // valida los tres casos pero con la raiz, ya que no tendrá padre
         } else {
             Node parent = getParent(value, this.raiz, null);
             boolean left = false;
@@ -247,17 +269,19 @@ public class Arbol {
                 right = true;
                 target = parent.getDerecho();
             }
-            //si no hay hijos, se desvincula del nodo padre
+            // si no hay hijos, se desvincula del nodo padre
             if (target.isLeaf()) {
                 TargetHasNoSons(parent, target, left, right);
             }
-            //si tiene un solo hijo, el su padre se vincula a su nieto donde estaba su hijo
+            // si tiene un solo hijo, el su padre se vincula a su nieto donde estaba su hijo
             if (target.hasOneSon()) {
                 TargetOneSon(parent, target);
             }
-            //si tiene dos hijos, buscamos el sucesor, su valor lo reemplazamos en el nodo del valor que 
-            //buscamos eliminar, y para ordenar, se elimina a ese sucesor, quien tendrá,  0 hijos, o solo uno
-            //con los metodos del caso 1 o 2 respectivamente
+            // si tiene dos hijos, buscamos el sucesor, su valor lo reemplazamos en el nodo
+            // del valor que
+            // buscamos eliminar, y para ordenar, se elimina a ese sucesor, quien tendrá, 0
+            // hijos, o solo uno
+            // con los metodos del caso 1 o 2 respectivamente
             if (target.hasTwoSon()) {
                 removeNodeTwoChildren(value, this.raiz, target);
 
@@ -294,7 +318,7 @@ public class Arbol {
             value = getNivel(target, node.getDerecho());
         }
 
-        if (value != - 1) {
+        if (value != -1) {
             return 1 + value;
         } else {
             return -1;
@@ -302,12 +326,14 @@ public class Arbol {
 
     }
 
-    public Node getSucesor(int valor, Node node) {   //pasa como parametro RAIZ del arbol para busscar desde allí
+    public Node getSucesor(int valor, Node node) { // pasa como parametro RAIZ del arbol para busscar desde allí
         Node sucesor = null;
         Node currentNode = node;
         while (currentNode != null) {
-            if (currentNode.getDato() > valor) {   //va recorriendo hasta encotntrar el nodo, gardando ancestro mas reciente
-                sucesor = currentNode;  //entra solo cuando el nodo se va a la izquierda, sino lo hace nunca, no hay sucesor
+            if (currentNode.getDato() > valor) { // va recorriendo hasta encotntrar el nodo, gardando ancestro mas
+                                                 // reciente
+                sucesor = currentNode; // entra solo cuando el nodo se va a la izquierda, sino lo hace nunca, no hay
+                                       // sucesor
                 currentNode = currentNode.getIzquierdo();
             } else {
                 if (currentNode.getDato() < valor) {
@@ -315,7 +341,7 @@ public class Arbol {
                 } else {
                     if (currentNode.getDerecho() != null) {
                         return getMin(currentNode.getDerecho());
-                    } //encuentra el nodo, si tiene nodo derecho, va al minimo de ese subarbol
+                    } // encuentra el nodo, si tiene nodo derecho, va al minimo de ese subarbol
                 }
             }
         }
@@ -386,7 +412,8 @@ public class Arbol {
             return false;
         }
 
-        return sameStructure(nodo1.getIzquierdo(), nodo2.getIzquierdo()) && sameStructure(nodo1.getDerecho(), nodo2.getDerecho());
+        return sameStructure(nodo1.getIzquierdo(), nodo2.getIzquierdo())
+                && sameStructure(nodo1.getDerecho(), nodo2.getDerecho());
 
     }
 
@@ -414,6 +441,33 @@ public class Arbol {
         return hojas;
     }
 
+
+    public LinkedList<Integer> traerHojas(Node nodo){
+        LinkedList<Integer> hojas = new LinkedList<>();
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(nodo);
+        while (!queue.isEmpty()) {
+            Node currentNode = queue.remove();
+            Node izquierdo = currentNode.getIzquierdo();
+            Node derecho = currentNode.getDerecho();
+
+            if (izquierdo != null) {
+                queue.add(izquierdo);
+            }
+
+            if (derecho != null) {
+                queue.add(derecho);
+            }
+            if (izquierdo == null && derecho == null) {
+                hojas.push(currentNode.getDato());
+            }
+
+        }
+        return hojas;
+ 
+
+    }
+
     public int calcularSuma(Node node) {
 
         if (node == null) {
@@ -436,7 +490,7 @@ public class Arbol {
 
     }
 
-    //parametros son la raiz del primer arbol y la del segundo
+    // parametros son la raiz del primer arbol y la del segundo
     public boolean sameStructureContent(Node nodo1, Node nodo2) {
         if (nodo1 == null && nodo2 == null) {
             return true;
@@ -445,27 +499,29 @@ public class Arbol {
             return false;
         }
         if (nodo1.getDato() == nodo2.getDato()) {
-            return sameStructure(nodo1.getIzquierdo(), nodo2.getIzquierdo()) && sameStructure(nodo1.getDerecho(), nodo2.getDerecho());
+            return sameStructureContent(nodo1.getIzquierdo(), nodo2.getIzquierdo())
+                    && sameStructureContent(nodo1.getDerecho(), nodo2.getDerecho());
         } else {
             return false;
         }
 
     }
-    //busca los valores dentro del rango volviendo a llamar a la funcion 
-    //cuando encuentre valores en el rango, es donde hará un retorno de la suma de lo que va subiendo
+    // busca los valores dentro del rango volviendo a llamar a la funcion
+    // cuando encuentre valores en el rango, es donde hará un retorno de la suma de
+    // lo que va subiendo
 
     public int calcularSumaRango(Node node, int min, int max) {
         if (node == null) {
             return 0;
         }
         if (min > node.getDato()) {
-            calcularSumaRango(node.getDerecho(), min, max); //esto se usa para moverse por los rangos validos
+            calcularSumaRango(node.getDerecho(), min, max); // esto se usa para moverse por los rangos validos
         }
         if (max < node.getDato()) {
             calcularSumaRango(node.getIzquierdo(), min, max);
         }
 
-        int leftSum = calcularSumaRango(node.getIzquierdo(), min, max);  //
+        int leftSum = calcularSumaRango(node.getIzquierdo(), min, max); //
         int rightSum = calcularSumaRango(node.getDerecho(), min, max);
 
         if (node.getDato() >= min && node.getDato() <= max) {
@@ -475,6 +531,27 @@ public class Arbol {
             return leftSum + rightSum;
         }
 
+    }
+
+    public int calcularSumaRango0tro(Node node, int min, int max) {
+        if (node == null) {
+            return 0;
+        }
+
+        if (node.getDato() < min) {
+            // El nodo es menor que el rango mínimo, solo revisa derecha
+            return calcularSumaRango(node.getDerecho(), min, max);
+        }
+
+        if (node.getDato() > max) {
+            // El nodo es mayor que el rango máximo, solo revisa izquierda
+            return calcularSumaRango(node.getIzquierdo(), min, max);
+        }
+
+        // Nodo está dentro del rango
+        return node.getDato()
+                + calcularSumaRango(node.getIzquierdo(), min, max)
+                + calcularSumaRango(node.getDerecho(), min, max);
     }
 
     public int calcularHojasRango(Node nodo, int min, int max) {
@@ -502,7 +579,7 @@ public class Arbol {
 
     }
 
-    public int calcularAltura(Node nodo) { //encuentra el camino mas largo y esa es la altura
+    public int calcularAltura(Node nodo) { // encuentra el camino mas largo y esa es la altura
         if (nodo == null) {
             return 0;
         } else {
@@ -510,7 +587,7 @@ public class Arbol {
         }
     }
 
-    //determinar cuantos son no terminales   diferencia de hojas y peso de arbol
+    // determinar cuantos son no terminales diferencia de hojas y peso de arbol
     public Node getRaiz() {
         return raiz;
     }
@@ -518,5 +595,48 @@ public class Arbol {
     public void setRaiz(Node raiz) {
         this.raiz = raiz;
     }
+
+    // a1 será el arbol mas pequeño a2 el mas grande, busca en el grande la raiz del
+    // pequeño y de ahí los recorre, en el momento
+    // en que no sean iguales, será falso, si termina el recorrido y son iguales,
+    // true
+    public boolean esSubarbol(Arbol a1, Arbol a2) {
+        int valorBuscar = a1.getRaiz().getDato();
+        if (a2.contains(valorBuscar, a2.getRaiz())) {
+            Node nodo = getNodeWhereIs(valorBuscar, a2.getRaiz()); // trae el nodo, a partir de ese nodo debe recorrer
+                                                                   // en cualquier orden, que deben ser iguales
+
+             return sameStructureContent(nodo, a1.getRaiz());                                                      
+           
+
+        } else {
+            return false;
+        }
+
+
+
+    }
+
+     public boolean rutaSum(int target, Node nodo){
+         boolean sumatoriaExiste = false;   
+        LinkedList<Integer> lista = traerHojas(nodo);
+
+        for(int i: lista){   //calcular sumatoria hacia ese nodo
+             
+          int valor = sumatoriaNodo(i, nodo);
+          if(valor == target){
+             sumatoriaExiste = true;
+             break;
+          }
+        }
+        return sumatoriaExiste;
+      
+
+
+     }
+    
+
+
+
 
 }
